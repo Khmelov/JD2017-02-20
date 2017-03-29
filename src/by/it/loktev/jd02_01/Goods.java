@@ -4,23 +4,26 @@ import java.util.*;
 
 public class Goods {
 
-    private static Map<String,Double> list=new HashMap<String,Double>(){
+    private static Set<Good> list=new HashSet<Good>(){
         {
-            this.put("молоко",1.0);
-            this.put("хлеб",0.5);
-            this.put("кофе",3.0);
-            this.put("чай",2.0);
-            this.put("кока-кола",1.5);
+            this.add(new Good("молоко",1.0));
+            this.add(new Good("хлеб",0.5));
+            this.add(new Good("кофе",3.0));
+            this.add(new Good("чай",2.0));
+            this.add(new Good("кока-кола",1.5));
         }
     };
 
-    protected static String getRandomGood(){
-      List<String> names=new ArrayList<String>(list.keySet());
-      int pos=Helper.getRandom(names.size()-1);
-      return names.get(pos);
+    protected static Good getRandomGood(){
+      List<Good> goods=new ArrayList(list);
+      int pos=Helper.getRandom(goods.size()-1);
+      Good good=goods.get(pos);
+      return good;
     };
 
+    /*
     protected static double getPrice(String goodName){
         return list.get(goodName);
     }
+    */
 }

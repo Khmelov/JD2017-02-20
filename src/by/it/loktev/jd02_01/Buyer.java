@@ -27,9 +27,8 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
         int goodsCount=Helper.getRandom(1,4);
         for (int g=1; g<=goodsCount; g++){
             Helper.sleep(Helper.getRandom(400,700));
-            String goodName=Goods.getRandomGood();
-            double price=Goods.getPrice(goodName);
-            System.out.println(this+" выбрал товар "+goodName+" ценой "+price);
+            Good good=Goods.getRandomGood();
+            System.out.println(this+" выбрал товар "+good.getName()+" ценой "+good.getPrice());
         }
         Helper.sleep(Helper.getRandom(400,700));
         System.out.println(this+" пошёл на кассу");
