@@ -13,7 +13,9 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
 
     public Buyer(int num, boolean pensioneer) {
             super("( Покупатель № " + num +" ) ");
-        if (pensioneer) System.out.print("Пенсионер!");
+        if (pensioneer == true) {
+            System.out.print("Пенсионер!");
+        }
         this.num = num;
         this.pensioneer = pensioneer;
     }
@@ -40,19 +42,21 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     @Override
     public void chooseGoods() {
         Double check = 0.0;
-        List<Good> bucketList = takeBucket();
+        Map<String, Double> bucketList = takeBucket();
         System.out.println(this + "выбирает продукты");
         int max = Helper.getRandom(1, 5);
         for (int i = 1; i <= max; i++) {
-            if (pensioneer) Helper.sleep((int) (Helper.getRandom(500, 2000) * 1.5));
-            else Helper.sleep(Helper.getRandom(500, 2000));
+            if (pensioneer == false) {
+                Helper.sleep(Helper.getRandom(500, 2000));
+            } else Helper.sleep((int) (Helper.getRandom(500, 2000)*1.5));
             Good good = Goods.getRandomGood();
             System.out.printf("%sвыбрал товар (%s). Цена: %s$\n", this, good.getName(), good.getPrice());
 
             putGoodsToBucket(bucketList, good);
         }
-        for (Good good : bucketList) {
-            check+=good.getPrice();
+        Iterator<Map.Entry<String, Double>> it = bucketList.entrySet().iterator();
+        while (it.hasNext()) {
+            check+=it.next().getValue();
         }
         System.out.println(this + "оплатил товары: " + bucketList);
         System.out.println(this + "получил чек на " + check + "$");
@@ -65,29 +69,31 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     }
 
     @Override
-    public List<Good> takeBucket() {
+    public Map<String, Double> takeBucket() {
         Runner.buckets--;
-        if (pensioneer) Helper.sleep((int) (Helper.getRandom(100, 200) * 1.5));
-        else Helper.sleep(Helper.getRandom(100, 200));
-        List<Good> bucketGoods = new ArrayList<>();
+        if (pensioneer == false) {
+            Helper.sleep(Helper.getRandom(100, 200));
+        } else Helper.sleep((int) (Helper.getRandom(100, 200)*1.5));
+        Map<String, Double> bucketGoods = new HashMap<>();
         System.out.println(this + "взял корзинку");
         return bucketGoods;
     }
 
     @Override
-    public void putGoodsToBucket(List<Good> bucketGoods, Good good) {
-        if (pensioneer) Helper.sleep((int) (Helper.getRandom(100, 200) * 1.5));
-        else Helper.sleep(Helper.getRandom(100, 200));
-
-        bucketGoods.add(good);
+    public void putGoodsToBucket(Map<String, Double> bucketGoods, Good good) {
+        if (pensioneer == false) {
+            Helper.sleep(Helper.getRandom(100, 200));
+        } else Helper.sleep((int) (Helper.getRandom(100, 200)*1.5));
+        bucketGoods.put(good.getName(), good.getPrice());
         System.out.printf("%sположил товар %s ценой %s$ в корзинку\n", this, good.getName(), good.getPrice());
     }
 
     @Override
     public void putBucket() {
         Runner.buckets++;
-        if (pensioneer) Helper.sleep((int) (Helper.getRandom(100, 200) * 1.5));
-        else Helper.sleep(Helper.getRandom(100, 200));
+        if (pensioneer == false) {
+            Helper.sleep(Helper.getRandom(100, 200));
+        } else Helper.sleep((int) (Helper.getRandom(100, 200)*1.5));
         System.out.println(this + "положил корзинку");
     }
 }
