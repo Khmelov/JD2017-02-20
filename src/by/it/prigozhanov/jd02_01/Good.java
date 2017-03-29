@@ -1,7 +1,5 @@
 package by.it.prigozhanov.jd02_01;
 
-import com.sun.javafx.binding.StringFormatter;
-
 /**
  * Created by v-omf on 3/29/2017.
  *
@@ -30,10 +28,5 @@ public class Good {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Продукт: " + "(" + name + " " + price +" $)";
     }
 }
