@@ -1,11 +1,10 @@
 package by.it.loktev.jd02_01;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Goods {
 
-    private Map<String,Double> list=new HashMap<String,Double>(){
+    private static Map<String,Double> list=new HashMap<String,Double>(){
         {
             this.put("молоко",1.0);
             this.put("хлеб",0.5);
@@ -15,4 +14,13 @@ public class Goods {
         }
     };
 
+    protected static String getRandomGood(){
+      List<String> names=new ArrayList<String>(list.keySet());
+      int pos=Helper.getRandom(names.size()-1);
+      return names.get(pos);
+    };
+
+    protected static double getPrice(String goodName){
+        return list.get(goodName);
+    }
 }
