@@ -22,11 +22,7 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
     @Override
     public void chooseGoods() {
         System.out.println(this+" вошёл в зал");
-        try {
-            sleep((int)(Math.random()*3000));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Helper.sleep(Helper.getRandom(500,1000));
         System.out.println(this+" выбрал товары");
     }
 
