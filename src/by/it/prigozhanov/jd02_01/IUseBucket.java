@@ -1,6 +1,7 @@
 package by.it.prigozhanov.jd02_01;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by v-omf on 3/29/2017.
@@ -8,7 +9,7 @@ import java.util.List;
  * @author v-omf
  */
 public interface IUseBucket {
-    void takeBucket();
-    void putGoodsToBucket(Good good);
+    Map<String, Double> takeBucket();
+    void putGoodsToBucket(Map<String, Double> bucketGoods, Good good);
     void putBucket();
 }
