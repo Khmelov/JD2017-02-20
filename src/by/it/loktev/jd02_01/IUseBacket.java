@@ -4,7 +4,7 @@ public interface IUseBacket {
 
     void takeBacket(); // взял корзину
 
-    void putGoodsToBacket(); // положил выбранный товар в корзину
+    void putGoodToBacket(Good good, double quantity); // положил выбранный товар в корзину
 
     void backBacket(); // взял корзину
 
