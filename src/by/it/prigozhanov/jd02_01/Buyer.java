@@ -13,9 +13,7 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
 
     public Buyer(int num, boolean pensioneer) {
             super("( Покупатель № " + num +" ) ");
-        if (pensioneer == true) {
-            System.out.print("Пенсионер!");
-        }
+        if (pensioneer) System.out.print("Пенсионер!");
         this.num = num;
         this.pensioneer = pensioneer;
     }
@@ -36,6 +34,7 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     @Override
     public void enterToMarket() {
         Runner.currentBuyersCounter++;
+        System.out.println("Покупателей в зале: " + Runner.currentBuyersCounter);
         System.out.println(this + "зашёл в магазин");
     }
 
@@ -46,9 +45,8 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
         System.out.println(this + "выбирает продукты");
         int max = Helper.getRandom(1, 5);
         for (int i = 1; i <= max; i++) {
-            if (pensioneer == false) {
-                Helper.sleep(Helper.getRandom(500, 2000));
-            } else Helper.sleep((int) (Helper.getRandom(500, 2000)*1.5));
+            if (pensioneer) Helper.sleep((int) (Helper.getRandom(500, 2000) * 1.5));
+            else Helper.sleep(Helper.getRandom(500, 2000));
             Good good = Goods.getRandomGood();
             System.out.printf("%sвыбрал товар (%s). Цена: %s$\n", this, good.getName(), good.getPrice());
 
@@ -71,9 +69,8 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     @Override
     public Map<String, Double> takeBucket() {
         Runner.buckets--;
-        if (pensioneer == false) {
-            Helper.sleep(Helper.getRandom(100, 200));
-        } else Helper.sleep((int) (Helper.getRandom(100, 200)*1.5));
+        if (pensioneer) Helper.sleep((int) (Helper.getRandom(100, 200) * 1.5));
+        else Helper.sleep(Helper.getRandom(100, 200));
         Map<String, Double> bucketGoods = new HashMap<>();
         System.out.println(this + "взял корзинку");
         return bucketGoods;
@@ -81,9 +78,9 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
 
     @Override
     public void putGoodsToBucket(Map<String, Double> bucketGoods, Good good) {
-        if (pensioneer == false) {
-            Helper.sleep(Helper.getRandom(100, 200));
-        } else Helper.sleep((int) (Helper.getRandom(100, 200)*1.5));
+        if (pensioneer) Helper.sleep((int) (Helper.getRandom(100, 200) * 1.5));
+        else Helper.sleep(Helper.getRandom(100, 200));
+
         bucketGoods.put(good.getName(), good.getPrice());
         System.out.printf("%sположил товар %s ценой %s$ в корзинку\n", this, good.getName(), good.getPrice());
     }
@@ -91,9 +88,8 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     @Override
     public void putBucket() {
         Runner.buckets++;
-        if (pensioneer == false) {
-            Helper.sleep(Helper.getRandom(100, 200));
-        } else Helper.sleep((int) (Helper.getRandom(100, 200)*1.5));
+        if (pensioneer) Helper.sleep((int) (Helper.getRandom(100, 200) * 1.5));
+        else Helper.sleep(Helper.getRandom(100, 200));
         System.out.println(this + "положил корзинку");
     }
 }
