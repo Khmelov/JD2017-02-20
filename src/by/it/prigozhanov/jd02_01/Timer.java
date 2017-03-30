@@ -9,13 +9,15 @@ public class Timer extends Thread {
     protected int second=0;
     protected int minute=0;
     private int set;
+    private boolean showInfo;
 
     /**
      * set - введённое количество минут в конструкторе
      * @param minutes - задаёт колличество минут для таймера.
      */
-    public Timer(int minutes) {
+    public Timer(int minutes, boolean showInfo) {
         this.set = minutes;
+        this.showInfo = showInfo;
     }
 
 
@@ -23,7 +25,13 @@ public class Timer extends Thread {
     public void run() {
         while (minute < set) {
             for (int i = 0; i < 60; i++) {
-                System.out.println(minute + " минут " + second + " секунд");
+                if (showInfo) {
+                    System.out.println("-----------------INFO-----------------");
+                    System.out.println("Время: " + minute + " минут " + second + " секунд");
+                    System.out.println("Корзинок осталось: " + Runner.buckets);
+                    System.out.println("Покупателей в зале: " + Runner.currentBuyersCounter);
+                    System.out.println("--------------------------------------");
+                }
                 Helper.sleep(1000);
                 second++;
             }
