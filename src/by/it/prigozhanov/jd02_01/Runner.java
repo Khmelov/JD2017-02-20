@@ -13,7 +13,7 @@ public class Runner {
 
     public static void main(String[] args) {
         Buyer buyer;
-        Timer timer = new Timer(2);
+        Timer timer = new Timer(2, true);
         timer.start();
         while (countBuyers < plan) {
             int count = Helper.getRandom(2);
@@ -24,13 +24,11 @@ public class Runner {
                 if (countBuyers == plan) break;
             }
             while (count > 0 && currentBuyersCounter<=40+(30-timer.second) && timer.second>30 && buckets>0) {
-                System.out.println(timer);
                 buyer = new Buyer(++countBuyers, Helper.getRandomBuyer());
                 buyer.start();
                 count--;
                 if (countBuyers == plan) break;
             }
-            System.out.println("Корзинок осталось: " + buckets);
             Helper.sleep(100);
         }
         System.out.println("План в " + plan + " посетителей выполнен, вход в магазин закрыт!");
