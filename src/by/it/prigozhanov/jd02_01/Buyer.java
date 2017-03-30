@@ -34,14 +34,13 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     @Override
     public void enterToMarket() {
         Runner.currentBuyersCounter++;
-        System.out.println("Покупателей в зале: " + Runner.currentBuyersCounter);
         System.out.println(this + "зашёл в магазин");
     }
 
     @Override
     public void chooseGoods() {
         Double check = 0.0;
-        Map<String, Double> bucketList = takeBucket();
+        List<Good> bucketList = takeBucket();
         System.out.println(this + "выбирает продукты");
         int max = Helper.getRandom(1, 5);
         for (int i = 1; i <= max; i++) {
@@ -52,9 +51,8 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
 
             putGoodsToBucket(bucketList, good);
         }
-        Iterator<Map.Entry<String, Double>> it = bucketList.entrySet().iterator();
-        while (it.hasNext()) {
-            check+=it.next().getValue();
+        for (Good good : bucketList) {
+            check+=good.getPrice();
         }
         System.out.println(this + "оплатил товары: " + bucketList);
         System.out.println(this + "получил чек на " + check + "$");
@@ -67,21 +65,21 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     }
 
     @Override
-    public Map<String, Double> takeBucket() {
+    public List<Good> takeBucket() {
         Runner.buckets--;
         if (pensioneer) Helper.sleep((int) (Helper.getRandom(100, 200) * 1.5));
         else Helper.sleep(Helper.getRandom(100, 200));
-        Map<String, Double> bucketGoods = new HashMap<>();
+        List<Good> bucketGoods = new ArrayList<>();
         System.out.println(this + "взял корзинку");
         return bucketGoods;
     }
 
     @Override
-    public void putGoodsToBucket(Map<String, Double> bucketGoods, Good good) {
+    public void putGoodsToBucket(List<Good> bucketGoods, Good good) {
         if (pensioneer) Helper.sleep((int) (Helper.getRandom(100, 200) * 1.5));
         else Helper.sleep(Helper.getRandom(100, 200));
 
-        bucketGoods.put(good.getName(), good.getPrice());
+        bucketGoods.add(good);
         System.out.printf("%sположил товар %s ценой %s$ в корзинку\n", this, good.getName(), good.getPrice());
     }
 
