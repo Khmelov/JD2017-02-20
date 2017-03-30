@@ -1,6 +1,6 @@
 package by.it.akhmelev.jd02_01.classwork;
 
-class Buyer extends Thread implements IBuyer, IUseBasket {
+class Buyer extends Thread implements IBuyer, IUseBacket {
 
     private int num;
 
@@ -28,40 +28,39 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
 
     @Override
     public void chooseGoods() {
-        System.out.println(this + " вошел в торговый зал");
-        int max = Helper.getRandom(1, 9);
-        System.out.println(this + "  запланировал выбрать товаров: " + max + " шт.");
+        System.out.println(this + "вошел в торговый зал");
+        int max = Helper.getRandom(1, 4);
         for (int i = 1; i <= max; i++) {
             int timeout = Helper.getRandom(100, 200);
             Helper.sleep(timeout);
             Good good = Goods.getRandomGood();
             System.out.println(
-                    String.format("%s   выбрал товар %s  цена:%s р.",
+                    String.format("%s выбрал товар %s  цена:%s р.",
                             this,
                             good.getName(),
                             good.getPrice())
             );
         }
-        System.out.println(this + "  выбор товаров завершил");
+        System.out.println(this + "Выбор товаров завершил");
     }
 
     @Override
     public void goToOut() {
-        System.out.println(this + "вышел из магазина");
+        System.out.println(this + " вышел из магазина");
     }
 
     @Override
-    public void takeBasket() {
-
-    }
-
-    @Override
-    public void putGoodsToBasket() {
+    public void takeBacket() {
 
     }
 
     @Override
-    public void backBasket() {
+    public void putGoodsToBucket() {
+
+    }
+
+    @Override
+    public void backBacket() {
 
     }
 }
