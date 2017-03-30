@@ -7,32 +7,32 @@ package by.it.prigozhanov.jd02_01;
  */
 public class Runner {
     public static int countBuyers = 0;
-    public static int plan = 1000;
-    public static int buckets = 500;
+    public static int plan = 300;
+    public static int buckets = 100;
     public static int currentBuyersCounter=0;
 
     public static void main(String[] args) {
         Buyer buyer;
-        SecondsCounter seconds = new SecondsCounter();
-        seconds.start();
+        Timer timer = new Timer(2);
+        timer.start();
         while (countBuyers < plan) {
             int count = Helper.getRandom(2);
-            while (count > 0 && currentBuyersCounter<seconds.second+10 && seconds.second<=30) {
-                System.out.println(seconds);
+            while (count > 0 && currentBuyersCounter<timer.second+10 && timer.second<=30 && buckets>0) {
                 buyer = new Buyer(++countBuyers, Helper.getRandomBuyer());
                 buyer.start();
                 count--;
                 if (countBuyers == plan) break;
             }
-            while (count > 0 && currentBuyersCounter<=40+(30-seconds.second) && seconds.second>30) {
-                System.out.println(seconds);
+            while (count > 0 && currentBuyersCounter<=40+(30-timer.second) && timer.second>30 && buckets>0) {
+                System.out.println(timer);
                 buyer = new Buyer(++countBuyers, Helper.getRandomBuyer());
                 buyer.start();
                 count--;
                 if (countBuyers == plan) break;
             }
-            Helper.sleep(200);
+            System.out.println("Корзинок осталось: " + buckets);
+            Helper.sleep(100);
         }
-        System.out.println("Все вошли");
+        System.out.println("План в " + plan + " посетителей выполнен, вход в магазин закрыт!");
     }
 }
