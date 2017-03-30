@@ -9,7 +9,7 @@ import java.util.Map;
  * @author v-omf
  */
 public interface IUseBucket {
-    Map<String, Double> takeBucket();
-    void putGoodsToBucket(Map<String, Double> bucketGoods, Good good);
+    List<Good> takeBucket();
+    void putGoodsToBucket(List<Good> bucketGoods, Good good);
     void putBucket();
 }
