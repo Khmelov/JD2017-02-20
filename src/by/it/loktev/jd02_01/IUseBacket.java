@@ -8,4 +8,6 @@ public interface IUseBacket {
 
     void backBacket(); // взял корзину
 
+    double getBacketPrice();
+
 }

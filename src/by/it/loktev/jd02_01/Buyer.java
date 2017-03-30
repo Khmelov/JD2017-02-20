@@ -5,8 +5,6 @@ import java.util.Map;
 
 public class Buyer extends Thread implements IBuyer, IUseBacket {
 
-    volatile static public int totalCount=0;
-
     private int num;
 
     private boolean isPensioner;
@@ -46,7 +44,9 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
             System.out.println(this+" выбрал товар "+good.getName()+" ценой "+good.getPrice()+" "+quantity+" штук");
         }
         Helper.sleep(Helper.getRandom(400,700)*timeMul);
-        System.out.println(this+" пошёл на кассу");
+        double backetPrice= getBacketPrice();
+        Shop.totalPrice+=backetPrice;
+        System.out.println(this+" пошёл на кассу, оплатил "+backetPrice);
     }
 
     @Override
@@ -70,14 +70,24 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
     }
 
     @Override
+    public double getBacketPrice() {
+        double price=0;
+        /*Set<Good,Double> backet=*/ //backet.entrySet().iterator();
+        for ( Map.Entry<Good,Double> goodEntry : backet.entrySet() ){
+           price+=goodEntry.getKey().getPrice()*goodEntry.getValue();
+        }
+        return price;
+    }
+
+    @Override
     public void run() {
-        totalCount++;
+        Shop.buyersCount++;
         enterToMarket();
         takeBacket();
         chooseGoods();
         backBacket();
         goToOut();
-        totalCount--;
+        Shop.buyersCount--;
     }
 
     @Override
