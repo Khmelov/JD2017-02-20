@@ -22,9 +22,9 @@ public class Helper {
         return random.nextInt(max-min+1)+min;
     }
 
-    static protected void sleep(int ms){
+    static protected void sleep(double ms){
         try {
-            Thread.sleep(ms);
+            Thread.sleep((int)ms);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

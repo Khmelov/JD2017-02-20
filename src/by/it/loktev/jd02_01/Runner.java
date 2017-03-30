@@ -14,8 +14,11 @@ public class Runner {
             Helper.sleep(Helper.getRandom(300,1000));
         }
 
+        while ( Buyer.totalCount>0 ){
+            Helper.sleep(500);
+        }
 
-        //System.out.println("Завершено");
+        System.out.println("Магазин закрыт");
 
     }
 
