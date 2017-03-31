@@ -1,5 +1,7 @@
 package by.it.prigozhanov.jd02_02;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 /**
  * Created by v-omf on 3/29/2017.
  *
@@ -27,10 +29,15 @@ public class Timer extends Thread {
             for (int i = 0; i < 60; i++) {
                 if (showInfo) {
                     System.out.println("-----------------INFO-----------------");
+                    System.out.println("План: " + Dispatcher.plan);
                     System.out.println("Время: " + minute + " минут " + second + " секунд");
                     System.out.println("Корзинок осталось: " + Dispatcher.buckets);
                     System.out.println("Покупателей в зале: " + Dispatcher.currentBuyersCounterInStore);
-                    System.out.println("--------------------------------------");
+                    System.out.println("Покупателей обслужено: " + Dispatcher.countComplete);
+                    System.out.println("Людей в очереди: " + BuyersQueue.queueBuyers.size());
+                    System.out.println("Открыто касс: " + Dispatcher.cashiers.size());
+                    System.out.println("Общий доход магазина: " + Dispatcher.earnings+"$");
+                    System.out.println("-----------------____-----------------");
                 }
                 Helper.sleep(1000);
                 second++;
