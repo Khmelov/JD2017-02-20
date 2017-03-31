@@ -9,18 +9,14 @@ public class Runner {
 
     public static void main(String[] args) {
         Buyer buyer;
-        Timer timer = new Timer(2, false);
+        Timer timer = new Timer(2, true);
         timer.start();
+        new Dispatcher().start();
         while (Dispatcher.countBuyers < Dispatcher.plan) {
             int count = Helper.getRandom(2);
             while (count > 0 && Dispatcher.currentBuyersCounterInStore <timer.second+10 && timer.second<=30 && Dispatcher.buckets >0) {
                 buyer = new Buyer(++Dispatcher.countBuyers, Helper.getRandomBuyer());
                 buyer.start();
-                try {
-                    buyer.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 count--;
                 if (Dispatcher.countBuyers == Dispatcher.plan) break;
             }
