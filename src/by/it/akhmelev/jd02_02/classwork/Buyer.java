@@ -1,6 +1,6 @@
 package by.it.akhmelev.jd02_02.classwork;
 
-class Buyer extends Thread implements IBuyer, IUseBasket {
+class Buyer extends Thread implements IBuyer, IUseBacket {
 
     private int num;
 
@@ -69,17 +69,17 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
     }
 
     @Override
-    public void takeBasket() {
+    public void takeBacket() {
 
     }
 
     @Override
-    public void putGoodsToBasket() {
+    public void putGoodsToBucket() {
 
     }
 
     @Override
-    public void backBasket() {
+    public void backBacket() {
 
     }
 }
