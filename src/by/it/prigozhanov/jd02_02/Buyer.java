@@ -8,13 +8,17 @@ package by.it.prigozhanov.jd02_02;
 public class Buyer extends Thread implements IBuyer, IUseBucket {
     private int num;
     private boolean pensioneer;
-    private Basket basket = null;
+    protected Basket basket = null;
 
     public Buyer(int num, boolean pensioneer) {
             super("( Покупатель № " + num +" ) ");
         if (pensioneer) System.out.print("Пенсионер!");
         this.num = num;
         this.pensioneer = pensioneer;
+    }
+
+    public boolean isPensioneer() {
+        return pensioneer;
     }
 
     @Override
@@ -42,6 +46,7 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     public void chooseGoods() {
         System.out.println(this + "выбирает продукты");
         int max = Helper.getRandom(1, 5);
+        System.out.println(this + "запланировал взять " + max + " товаров");
         for (int i = 1; i <= max; i++) {
             if (pensioneer) Helper.sleep((int) (Helper.getRandom(500, 2000) * 1.5));
             else Helper.sleep(Helper.getRandom(500, 2000));
@@ -54,9 +59,8 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
 
     @Override
     public void goToQueue() {
-        System.out.println(this + "подошёл на кассу");
-        Helper.sleep(Helper.getRandom(2000, 5000));
         BuyersQueue.add(this);
+        System.out.println(this + "подошёл на кассу");
         synchronized (this) {
             try {
                 wait();
@@ -70,11 +74,15 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     @Override
     public void goToOut() {
         Dispatcher.currentBuyersCounterInStore--;
+        synchronized (Dispatcher.monitorCounter) {
+            Dispatcher.countComplete++;
+        }
         System.out.println(this + "вышел из магазина");
     }
 
     @Override
     public void takeBucket() {
+        Dispatcher.buckets--;
         if (pensioneer) Helper.sleep((int) (Helper.getRandom(100, 200) * 1.5));
         else Helper.sleep(Helper.getRandom(100, 200));
         Basket basket = new Basket(num);
