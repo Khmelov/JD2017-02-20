@@ -1,6 +1,4 @@
-package by.it.prigozhanov.jd02_01;
-
-import java.util.List;
+package by.it.prigozhanov.jd02_02;
 
 /**
  * Created by v-omf on 3/29/2017.
