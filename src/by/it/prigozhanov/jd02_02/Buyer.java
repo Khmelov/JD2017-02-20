@@ -1,6 +1,4 @@
-package by.it.prigozhanov.jd02_01;
-
-import java.util.*;
+package by.it.prigozhanov.jd02_02;
 
 /**
  * Created by v-omf on 3/29/2017.
@@ -29,13 +27,14 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
         enterToMarket();
         takeBucket();
         chooseGoods();
+        goToQueue();
         putBucket();
         goToOut();
     }
 
     @Override
     public void enterToMarket() {
-        Runner.currentBuyersCounter++;
+        Dispatcher.currentBuyersCounterInStore++;
         System.out.println(this + "зашёл в магазин");
     }
 
@@ -54,8 +53,23 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     }
 
     @Override
+    public void goToQueue() {
+        System.out.println(this + "подошёл на кассу");
+        Helper.sleep(Helper.getRandom(2000, 5000));
+        BuyersQueue.add(this);
+        synchronized (this) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(this + "покинул кассу");
+    }
+
+    @Override
     public void goToOut() {
-        Runner.currentBuyersCounter--;
+        Dispatcher.currentBuyersCounterInStore--;
         System.out.println(this + "вышел из магазина");
     }
 
@@ -80,7 +94,7 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
 
     @Override
     public void putBucket() {
-        Runner.buckets++;
+        Dispatcher.buckets++;
         if (pensioneer) Helper.sleep((int) (Helper.getRandom(100, 200) * 1.5));
         else Helper.sleep(Helper.getRandom(100, 200));
         System.out.println(this + "положил корзинку");
