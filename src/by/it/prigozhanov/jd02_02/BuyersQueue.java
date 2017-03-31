@@ -8,20 +8,17 @@ import java.util.ArrayDeque;
  * @author v-omf
  */
 public class BuyersQueue {
-    protected final static ArrayDeque<Buyer> queueBuyers = new ArrayDeque<>();
+    private final static ArrayDeque<Buyer> queueBuyers = new ArrayDeque<>();
 
     static void add(Buyer buyer) {
         synchronized (queueBuyers) {
-            if (buyer.isPensioneer()) {
-                queueBuyers.addFirst(buyer);
-            } else
             queueBuyers.addLast(buyer);
         }
     }
 
     static Buyer extract() {
         synchronized (queueBuyers) {
-          return queueBuyers.pollFirst();
+          return queueBuyers.removeFirst();
         }
     }
 

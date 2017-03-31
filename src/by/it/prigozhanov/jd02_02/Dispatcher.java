@@ -9,13 +9,12 @@ import java.util.List;
  * @author v-omf
  */
 public class Dispatcher extends Thread{
-    static final Integer monitorCounter = 0;
+    final Integer monitorCounter = 0;
     static int countBuyers = 0;
-    final static int plan = 200;
-    static volatile int buckets = 100;
+    private static int countComplete = 0;
+    final static int plan = 300;
+    static int buckets = 100;
     static int currentBuyersCounterInStore = 0;
-    static int countComplete = 0;
-    static double earnings;
 
     static List<Cashier> cashiers = new ArrayList<>();
 
@@ -29,6 +28,5 @@ public class Dispatcher extends Thread{
             }
             Helper.sleep(1000);
         }
-
     }
 }

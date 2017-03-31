@@ -23,10 +23,6 @@ public class Basket {
         goodCounter++;
     }
 
-    protected List<Good> getBascket() {
-        return bascketList;
-    }
-
 
 
     @Override
