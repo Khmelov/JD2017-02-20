@@ -24,8 +24,8 @@ public class Cashier extends Thread {
         while ((buyer = BuyersQueue.extract()) != null) {
             System.out.println(this + "начал обслуживание покупателя " + buyer);
             List<Good> buyersBusket = buyer.basket.getBascket();
-            Helper.sleep(buyer.basket.getBascket().size() * 1000);
-            System.out.println(this + "обрабатывает корзинку покупателя: " + buyersBusket);// сделал зависимость времени ожидания от колличества товаров
+            Helper.sleep(buyer.basket.getBascket().size() * 1000);// сделал зависимость времени ожидания от колличества товаров
+            System.out.println(this + "обрабатывает корзинку покупателя: " + buyersBusket);
             for (Good good : buyersBusket) {
                 check += good.getPrice();
             }
