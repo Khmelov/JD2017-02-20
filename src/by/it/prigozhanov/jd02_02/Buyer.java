@@ -46,7 +46,6 @@ public class Buyer extends Thread implements IBuyer, IUseBucket {
     public void chooseGoods() {
         System.out.println(this + "выбирает продукты");
         int max = Helper.getRandom(1, 5);
-        System.out.println(this + "запланировал взять " + max + " товаров");
         for (int i = 1; i <= max; i++) {
             if (pensioneer) Helper.sleep((int) (Helper.getRandom(500, 2000) * 1.5));
             else Helper.sleep(Helper.getRandom(500, 2000));
