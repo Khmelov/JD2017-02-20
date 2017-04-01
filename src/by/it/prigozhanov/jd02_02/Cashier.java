@@ -29,11 +29,13 @@ public class Cashier extends Thread {
             for (Good good : buyersBusket) {
                 check += good.getPrice();
             }
+            buyer.check=check;
             System.out.println(buyer + "получил чек на " + check + "$");
             getCheckToDispatcher(check);
             synchronized (buyer) {
                 buyer.notify();
             }
+            check = 0;
             System.out.println(this + "завершил обслуживание покупателя " + buyer);
         }
         System.out.println(this + "закрыл кассу");

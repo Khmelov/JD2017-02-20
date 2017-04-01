@@ -8,6 +8,7 @@ package by.it.prigozhanov.jd02_02;
 public class Buyer extends Thread implements IBuyer, IUseBucket {
     private int num;
     private boolean pensioneer;
+    protected double check=0;
     protected Basket basket = null;
 
     public Buyer(int num, boolean pensioneer) {
