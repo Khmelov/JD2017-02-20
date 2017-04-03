@@ -10,7 +10,6 @@ public class Runner {
     public static void main(String[] args) {
         Buyer buyer;
         Timer timer = new Timer(1, true);
-        timer.setDaemon(true);
         timer.start();
         new Dispatcher().start();
         while (Dispatcher.countBuyers.get() < Dispatcher.plan) {
