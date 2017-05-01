@@ -5,21 +5,23 @@ package by.it.prigozhanov.jd03_02.beans;
  */
 public class Car {
 
-    private String description;
     private int id;
+    private String mark;
+    private String model;
     private int hp;
-    private int seats;
-    private int fuelConsumption;
-    private int luggageCapacity;
-    private double price;
     private String location;
+    private int luggageCapacity;
 
-    public String getDescription() {
-        return description;
+    public Car(int id, String mark, String model, int hp, String location, int luggageCapacity) {
+        this.id = id;
+        this.mark = mark;
+        this.model = model;
+        this.hp = hp;
+        this.location = location;
+        this.luggageCapacity = luggageCapacity;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Car() {
     }
 
     public int getId() {
@@ -30,6 +32,22 @@ public class Car {
         this.id = id;
     }
 
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public int getHp() {
         return hp;
     }
@@ -38,20 +56,12 @@ public class Car {
         this.hp = hp;
     }
 
-    public int getSeats() {
-        return seats;
+    public String getLocation() {
+        return location;
     }
 
-    public void setSeats(int seats) {
-        this.seats = seats;
-    }
-
-    public int getFuelConsumption() {
-        return fuelConsumption;
-    }
-
-    public void setFuelConsumption(int fuelConsumption) {
-        this.fuelConsumption = fuelConsumption;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public int getLuggageCapacity() {
@@ -60,22 +70,6 @@ public class Car {
 
     public void setLuggageCapacity(int luggageCapacity) {
         this.luggageCapacity = luggageCapacity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     @Override
@@ -87,55 +81,32 @@ public class Car {
 
         if (id != car.id) return false;
         if (hp != car.hp) return false;
-        if (seats != car.seats) return false;
-        if (fuelConsumption != car.fuelConsumption) return false;
         if (luggageCapacity != car.luggageCapacity) return false;
-        if (Double.compare(car.price, price) != 0) return false;
-        if (description != null ? !description.equals(car.description) : car.description != null) return false;
+        if (mark != null ? !mark.equals(car.mark) : car.mark != null) return false;
+        if (model != null ? !model.equals(car.model) : car.model != null) return false;
         return location != null ? location.equals(car.location) : car.location == null;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = description != null ? description.hashCode() : 0;
-        result = 31 * result + id;
+        int result = id;
+        result = 31 * result + (mark != null ? mark.hashCode() : 0);
+        result = 31 * result + (model != null ? model.hashCode() : 0);
         result = 31 * result + hp;
-        result = 31 * result + seats;
-        result = 31 * result + fuelConsumption;
-        result = 31 * result + luggageCapacity;
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + luggageCapacity;
         return result;
-    }
-
-    public Car(String description, int id, int hp, int seats, int fuelConsumption, int luggageCapacity, double price, String location) {
-        this.description = description;
-        this.id = id;
-        this.hp = hp;
-        this.seats = seats;
-        this.fuelConsumption = fuelConsumption;
-        this.luggageCapacity = luggageCapacity;
-        this.price = price;
-        this.location = location;
-    }
-
-    public Car() {
     }
 
     @Override
     public String toString() {
         return "Car{" +
-                "description='" + description + '\'' +
-                ", id=" + id +
+                "id=" + id +
+                ", mark='" + mark + '\'' +
+                ", model='" + model + '\'' +
                 ", hp=" + hp +
-                ", seats=" + seats +
-                ", fuelConsumption=" + fuelConsumption +
-                ", luggageCapacity=" + luggageCapacity +
-                ", price=" + price +
                 ", location='" + location + '\'' +
+                ", luggageCapacity=" + luggageCapacity +
                 '}';
     }
 }

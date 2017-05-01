@@ -53,13 +53,13 @@ public class C_Init {
                     "  CONSTRAINT `fk_users_roles`\n" +
                     "    FOREIGN KEY (`FK_Roles`)\n" +
                     "    REFERENCES `prigozhanov`.`roles` (`ID`)\n" +
-                    "    ON DELETE NO ACTION\n" +
-                    "    ON UPDATE NO ACTION,\n" +
+                    "    ON DELETE RESTRICT\n" +
+                    "    ON UPDATE RESTRICT,\n" +
                     "  CONSTRAINT `fk_users_cars1`\n" +
                     "    FOREIGN KEY (`FK_Cars`)\n" +
                     "    REFERENCES `prigozhanov`.`cars` (`ID`)\n" +
-                    "    ON DELETE NO ACTION\n" +
-                    "    ON UPDATE NO ACTION)\n" +
+                    "    ON DELETE RESTRICT\n" +
+                    "    ON UPDATE RESTRICT)\n" +
                     "ENGINE = InnoDB\n" +
                     "AUTO_INCREMENT = 1\n" +
                     "DEFAULT CHARACTER SET = utf8;");

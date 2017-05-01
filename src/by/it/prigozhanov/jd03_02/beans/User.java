@@ -6,10 +6,25 @@ package by.it.prigozhanov.jd03_02.beans;
 public class User {
 
     private int id;
+    private String passportData;
     private String login;
     private String password;
     private String email;
-    private int role;
+    private int fkRole;
+    private int fkCar;
+
+    public User(int id, String passportData, String login, String password, String email, int fkRole, int fkCar) {
+        this.id = id;
+        this.passportData = passportData;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.fkRole = fkRole;
+        this.fkCar = fkCar;
+    }
+
+    public User() {
+    }
 
     public int getId() {
         return id;
@@ -17,6 +32,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPassportData() {
+        return passportData;
+    }
+
+    public void setPassportData(String passportData) {
+        this.passportData = passportData;
     }
 
     public String getLogin() {
@@ -43,12 +66,20 @@ public class User {
         this.email = email;
     }
 
-    public int getRole() {
-        return role;
+    public int getFkRole() {
+        return fkRole;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setFkRole(int fkRole) {
+        this.fkRole = fkRole;
+    }
+
+    public int getFkCar() {
+        return fkCar;
+    }
+
+    public void setFkCar(int fkCar) {
+        this.fkCar = fkCar;
     }
 
     @Override
@@ -59,7 +90,9 @@ public class User {
         User user = (User) o;
 
         if (id != user.id) return false;
-        if (role != user.role) return false;
+        if (fkRole != user.fkRole) return false;
+        if (fkCar != user.fkCar) return false;
+        if (passportData != null ? !passportData.equals(user.passportData) : user.passportData != null) return false;
         if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         return email != null ? email.equals(user.email) : user.email == null;
@@ -68,34 +101,25 @@ public class User {
     @Override
     public int hashCode() {
         int result = id;
+        result = 31 * result + (passportData != null ? passportData.hashCode() : 0);
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + role;
+        result = 31 * result + fkRole;
+        result = 31 * result + fkCar;
         return result;
-    }
-
-    public User(int id, String login, String password, String email, int role) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.email = email;
-        this.role = role;
-    }
-
-    public User() {
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", passportData='" + passportData + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", role=" + role +
-                "}";
-
+                ", fkRole=" + fkRole +
+                ", fkCar=" + fkCar +
+                '}';
     }
-
 }
