@@ -10,7 +10,7 @@ import java.sql.Statement;
  */
 public class B_AddRoles {
 
-    public static void main(String[] args) {
+    public static void add() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -20,9 +20,14 @@ public class B_AddRoles {
 
         try (Connection connection = DriverManager.getConnection(CN.URL_DB, CN.USER_DB, CN.PASSWORD_DB);
              Statement statement = connection.createStatement()) {
-
+            statement.executeUpdate("INSERT INTO roles(`Role`)" +
+                    " VALUES ('Administrator')");
+            System.out.println("Роль добавленна в базу данных");
                 statement.executeUpdate("INSERT INTO roles(`Role`)" +
-                        " VALUES ('Regular')");
+                        " VALUES ('Guest')");
+            System.out.println("Роль добавленна в базу данных");
+
+
 
         } catch (SQLException e) {
 

@@ -10,7 +10,7 @@ import java.sql.Statement;
  */
 public class A_AddUser {
 
-    public static void main(String[] args) {
+    public static void add() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -20,12 +20,15 @@ public class A_AddUser {
 
         try (Connection connection = DriverManager.getConnection(CN.URL_DB, CN.USER_DB, CN.PASSWORD_DB);
              Statement statement = connection.createStatement()) {
-            statement.executeUpdate("INSERT INTO users(`Passport_data`, `Login`, `Password`, `Email`, `FK_Role`) " +
-                    "VALUES ('MJ239543','Petrov','12356','petrov@gmail.com',2)");
             statement.executeUpdate("INSERT INTO users(`Passport_data`, `Login`, `Password`, `Email`) " +
-                    "VALUES ('MJ2395343','Gerasomov','12356','gerasimov@gmail.com')");
-            statement.executeUpdate("INSERT INTO users(`Passport_data`, `Login`, `Password`, `Email`, `FK_Role`) " +
+                    "VALUES ('MJ239543','Petrov','12356','petrov@gmail.com')");
+            System.out.println("Пользователь добавлен в базу данных");
+            statement.executeUpdate("INSERT INTO users(`Passport_data`, `Login`, `Password`, `Email`,`FK_Roles`) " +
+                    "VALUES ('MJ2395343','Gerasomov','12356','gerasimov@gmail.com',1)");
+            System.out.println("Пользователь добавлен в базу данных");
+            statement.executeUpdate("INSERT INTO users(`Passport_data`, `Login`, `Password`, `Email`, `FK_Roles`) " +
                     "VALUES ('MJ2351543','Petrov','1235213','petrov1973@gmail.com',2)");
+            System.out.println("Пользователь добавлен в базу данных");
         } catch (SQLException e) {
 
         }
