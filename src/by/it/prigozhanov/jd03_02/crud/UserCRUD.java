@@ -15,8 +15,8 @@ public class UserCRUD {
     public boolean create(User user) throws SQLException {
         try (Connection connection = ConnectorCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format("INSERT INTO `users`(`Role`, `Login`, `Password`, `Email`) VALUES (%d,%s,%s,%s)",
-                            user.getRole(), user.getLogin(), user.getPassword(), user.getEmail());
+            String sql = String.format("INSERT INTO `users`(`Passport_data`, `Login`, `Password`, `Email`) VALUES ('%s','%s','%s','%s')",
+                            user.getPassportData(), user.getLogin(), user.getPassword(), user.getEmail());
             if (1 == statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ResultSet keys = statement.getGeneratedKeys();
                 if (keys.next()) {
@@ -35,15 +35,17 @@ public class UserCRUD {
         try (Connection connection = ConnectorCreator.getConnection();
              Statement statement = connection.createStatement()) {
             String sql = String.format(
-                    "SELECT `ID`, `Role`, `Login`, `Password`, `Email` FROM `users` WHERE %d", user.getId());
+                    "SELECT `ID`, `Passport_data`, `Login`, `Password`, `Email`,`FK_Roles`,`FK_Cars` FROM `users` WHERE ID=%d", user.getId());
             ResultSet rs = statement.executeQuery(sql);
             if (rs.next()) {
                 result = new User(
                         rs.getInt("ID"),
+                        rs.getString("Passport_data"),
                         rs.getString("Login"),
                         rs.getString("Password"),
                         rs.getString("Email"),
-                        rs.getInt("Role")
+                        rs.getInt("FK_Roles"),
+                        rs.getInt("FK_Cars")
                 );
             }
         }
@@ -53,13 +55,8 @@ public class UserCRUD {
     public boolean update(User user) throws SQLException {
         try (Connection connection = ConnectorCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format(
-                    "UPDATE `users` SET " +
-                            "`Role`=%d," +
-                            "`Login`=%s," +
-                            "`Password`=%s," +
-                            "`Email`=[value-5] WHERE ID=%d",
-                    user.getRole(), user.getLogin(), user.getPassword(), user.getEmail(), user.getId());
+            String sql = String.format("UPDATE `users` SET `Passport_data`='%s',`Login`='%s',`Password`='%s',`Email`='%s',`FK_Roles`='%d',`FK_Cars`='%d' WHERE ID=%d",
+                    user.getPassportData(),user.getLogin(),user.getPassword(),user.getEmail(),user.getFkRole(),user.getFkCar(),user.getId());
             return (1 == statement.executeUpdate(sql));
         }
     }

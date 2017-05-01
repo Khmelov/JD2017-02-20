@@ -12,8 +12,24 @@ public class TestRole {
 
     public static void main(String[] args) throws SQLException {
         RoleCRUD roleCRUD = new RoleCRUD();
-        Role role = new Role(0, "Administrator");
-        roleCRUD.create(role);
+        Role role = new Role(3, "Administrator");
+        if (roleCRUD.create(role)) {
+            System.out.println("CREATED: "+ role);
+        };
+
+        if (role != null) {
+            System.out.println("READ: "+roleCRUD.read(role));
+        }
+
+        if (roleCRUD.update(role)) {
+            System.out.println("UPDATED: "+role);
+        }
+
+        if(roleCRUD.delete(role)) {
+            System.out.println("DELETED: "+role);
+        }
+
+
 
     }
 
