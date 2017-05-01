@@ -10,7 +10,7 @@ import java.sql.Statement;
  */
 public class A_AddCar {
 
-    public static void main(String[] args) {
+    public static void add() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -22,6 +22,7 @@ public class A_AddCar {
              Statement statement = connection.createStatement()) {
             statement.executeUpdate("INSERT INTO cars(`Mark`, `Model`, `HP`, `Location`, `Luggage_capacity`)" +
                     " VALUES ('Renault','Sandero',110,'Minsk',5)");
+            System.out.println("Автомобиль добавлен в базу данных");
         } catch (SQLException e) {
 
         }

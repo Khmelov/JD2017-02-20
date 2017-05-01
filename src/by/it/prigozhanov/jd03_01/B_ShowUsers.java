@@ -9,17 +9,10 @@ import java.sql.*;
  */
 public class B_ShowUsers {
 
-    public static void main(String[] args) {
+    public static void show() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Driver driver = new FabricMySQLDriver();
-            DriverManager.registerDriver(driver);
-        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -38,7 +31,7 @@ public class B_ShowUsers {
                 String out = resultSet.getString("Email") +", "+
                         resultSet.getString("Passport_data") + ", " +
                         resultSet.getString("Login")+ ", " +
-                        "Role - " + resultSet.getInt("FK_Role");
+                        "Role - " + resultSet.getInt("FK_Roles");
                 System.out.println(out);
 
             }
