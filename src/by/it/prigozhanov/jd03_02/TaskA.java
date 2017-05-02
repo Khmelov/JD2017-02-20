@@ -20,12 +20,11 @@ public class TaskA {
     public static void main(String[] args) throws SQLException, IOException {
         try (Connection connection = ConnectorCreator.getConnection();
              Statement statement = connection.createStatement();) {
-            System.out.println("Enter user's name:");
             String login = "Petrov";
             String sql = String.format("SELECT * FROM `users` WHERE Login='%s'", login);
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-                System.out.println(rs.getString("FK_Roles"));
+                System.out.println("Role: "+rs.getString("FK_Roles"));
             }
 
 
