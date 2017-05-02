@@ -10,10 +10,10 @@ public class User {
     private String login;
     private String password;
     private String email;
-    private int fkRole;
-    private int fkCar;
+    private Integer fkRole;
+    private Integer fkCar;
 
-    public User(int id, String passportData, String login, String password, String email, int fkRole, int fkCar) {
+    public User(int id, String passportData, String login, String password, String email, Integer fkRole, Integer fkCar) {
         this.id = id;
         this.passportData = passportData;
         this.login = login;
