@@ -2,7 +2,7 @@ package by.it.prigozhanov.jd03_03.dao.tests;
 
 
 import by.it.prigozhanov.jd03_03.beans.User;
-import by.it.prigozhanov.jd03_03.dao.UserCRUD;
+import by.it.prigozhanov.jd03_03.dao.UserDAO;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
@@ -13,15 +13,15 @@ import static org.junit.Assert.assertTrue;
  *
  * @author v-omf
  */
-public class UserCRUDTest {
-    private static UserCRUD userCRUD = new UserCRUD();
+public class UserDAOTest {
+    private static UserDAO userDAO = new UserDAO();
 
     @Test
     public void testUser() throws Exception {
         User user = new User(1, "PassportDataTest", "LoginTest", "PasswordTest", "EmailTest", 1, 1);
-        assertTrue(userCRUD.create(user));
-        assertNotNull(userCRUD.read(1));
-        assertTrue(userCRUD.update(user));
-        assertTrue(userCRUD.delete(user));
+        assertTrue(userDAO.create(user));
+        assertNotNull(userDAO.read(1));
+        assertTrue(userDAO.update(user));
+        assertTrue(userDAO.delete(user));
     }
 }

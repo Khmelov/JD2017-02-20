@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  *
  * @author v-omf
  */
-public class CarCRUDTest {
+public class CarDAOTest {
     private static CarCRUD carCRUD = new CarCRUD();
 
     @Test

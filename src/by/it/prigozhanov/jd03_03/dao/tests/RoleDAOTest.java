@@ -2,7 +2,7 @@ package by.it.prigozhanov.jd03_03.dao.tests;
 
 
 import by.it.prigozhanov.jd03_03.beans.Role;
-import by.it.prigozhanov.jd03_03.dao.RoleCRUD;
+import by.it.prigozhanov.jd03_03.dao.RoleDAO;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
@@ -13,16 +13,16 @@ import static org.junit.Assert.assertTrue;
  *
  * @author v-omf
  */
-public class RoleCRUDTest {
-    private static RoleCRUD roleCRUD = new RoleCRUD();
+public class RoleDAOTest {
+    private static RoleDAO roleDAO = new RoleDAO();
 
     @Test
     public void testUser() throws Exception {
         Role role = new Role(1,"Test");
-        assertTrue(roleCRUD.create(role));
-        assertNotNull(roleCRUD.read(1));
-        assertTrue(roleCRUD.update(role));
-        assertTrue(roleCRUD.delete(role));
+        assertTrue(roleDAO.create(role));
+        assertNotNull(roleDAO.read(1));
+        assertTrue(roleDAO.update(role));
+        assertTrue(roleDAO.delete(role));
     }
 
 

@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  *
  * @author v-omf
  */
-public class RoleCRUDTest {
+public class RoleDAOTest {
     private static RoleCRUD roleCRUD = new RoleCRUD();
 
     @Test

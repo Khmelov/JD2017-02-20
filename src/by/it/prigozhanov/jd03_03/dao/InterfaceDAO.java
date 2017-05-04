@@ -13,7 +13,7 @@ public interface InterfaceDAO<T> {
     boolean update(T entity) throws SQLException;
     boolean delete(T entity) throws SQLException;
 
-    List<T> getAll(String whereString);
+    List<T> getAll(String whereString) throws SQLException;
 
 
 

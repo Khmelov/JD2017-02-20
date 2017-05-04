@@ -21,17 +21,10 @@ public abstract class AbstractDAO {
         }
     }
 
-    int executeUpdate(String sql) throws SQLException {
+    boolean executeUpdate(String sql) throws SQLException {
         try (Connection connection = ConnectorCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            if (1 == statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ResultSet keys = statement.getGeneratedKeys();
-                if (keys.next()) {
-                    int id = keys.getInt(1);
-                    return id;
-                }
-            }
-            return -1;
+            return (statement.executeUpdate(sql)>0);
         }
     }
 }

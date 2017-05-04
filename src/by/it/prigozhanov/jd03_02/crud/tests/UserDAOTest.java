@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
  *
  * @author v-omf
  */
-public class UserCRUDTest {
+public class UserDAOTest {
     private static UserCRUD userCRUD = new UserCRUD();
 
     @Test
