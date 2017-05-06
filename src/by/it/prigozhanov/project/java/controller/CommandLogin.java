@@ -1,13 +1,14 @@
 package by.it.prigozhanov.project.java.controller;
 
-import com.sun.deploy.net.HttpRequest;
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * Created by v-omf on 5/5/2017!
  */
-public class CommandLogin implements ActionCommand {
+public class CommandLogin extends Action {
     @Override
-    public String execute(HttpRequest request) {
-        return "/login.jsp";
+    public Action execute(HttpServletRequest request) {
+        return null;
     }
 }
