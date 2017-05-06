@@ -9,6 +9,7 @@ public class DAO {
     public UserDAO user;
     public CarDAO car;
     public RoleDAO role;
+    public OrderDAO order;
 
     private DAO() {
     }
@@ -21,6 +22,7 @@ public class DAO {
                     instance.car = new CarDAO();
                     instance.user = new UserDAO();
                     instance.role = new RoleDAO();
+                    instance.order = new OrderDAO();
                 }
             }
         }

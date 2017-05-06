@@ -18,9 +18,8 @@ public class CommandSignup extends Action {
         try {
             user.setLogin(Form.getString(request, "login", Pattern.LOGIN));
             user.setEmail(Form.getString(request, "email", Pattern.EMAIL));
-            user.setPassportData("MP12034928");
+            user.setPassportData("MP1203432");
             user.setPassword(Form.getString(request, "password", Pattern.PASSWORD));
-            user.setFkRole(2);
             DAO dao = DAO.getInstance();
             dao.user.create(user);
             if (dao.user.create(user)) return Actions.LOGIN.command;

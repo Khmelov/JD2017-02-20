@@ -11,14 +11,21 @@ public class Car {
     private int hp;
     private String location;
     private int luggageCapacity;
+    private int price;
+    private int seats;
+    private int fuelConsumption;
 
-    public Car(int id, String mark, String model, int hp, String location, int luggageCapacity) {
+
+    public Car(int id, String mark, String model, int hp, String location, int luggageCapacity, int price, int seats, int fuelConsumption) {
         this.id = id;
         this.mark = mark;
         this.model = model;
         this.hp = hp;
         this.location = location;
         this.luggageCapacity = luggageCapacity;
+        this.price = price;
+        this.seats = seats;
+        this.fuelConsumption = fuelConsumption;
     }
 
     public Car() {
@@ -72,6 +79,30 @@ public class Car {
         this.luggageCapacity = luggageCapacity;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    public int getFuelConsumption() {
+        return fuelConsumption;
+    }
+
+    public void setFuelConsumption(int fuelConsumption) {
+        this.fuelConsumption = fuelConsumption;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,6 +113,9 @@ public class Car {
         if (id != car.id) return false;
         if (hp != car.hp) return false;
         if (luggageCapacity != car.luggageCapacity) return false;
+        if (price != car.price) return false;
+        if (seats != car.seats) return false;
+        if (fuelConsumption != car.fuelConsumption) return false;
         if (mark != null ? !mark.equals(car.mark) : car.mark != null) return false;
         if (model != null ? !model.equals(car.model) : car.model != null) return false;
         return location != null ? location.equals(car.location) : car.location == null;
@@ -95,6 +129,9 @@ public class Car {
         result = 31 * result + hp;
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + luggageCapacity;
+        result = 31 * result + price;
+        result = 31 * result + seats;
+        result = 31 * result + fuelConsumption;
         return result;
     }
 
@@ -107,6 +144,9 @@ public class Car {
                 ", hp=" + hp +
                 ", location='" + location + '\'' +
                 ", luggageCapacity=" + luggageCapacity +
+                ", price=" + price +
+                ", seats=" + seats +
+                ", fuelConsumption=" + fuelConsumption +
                 '}';
     }
 }

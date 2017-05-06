@@ -19,8 +19,9 @@ public class CarDAO extends AbstractDAO implements InterfaceDAO<Car> {
 
     @Override
     public boolean create(Car car) throws SQLException {
-        String sql = String.format("INSERT INTO `cars`(`Mark`, `Model`, `HP`, `Location`, `Luggage_capacity`) VALUES ('%s','%s','%d','%s','%s')",
-                car.getMark(), car.getModel(), car.getHp(), car.getLocation(),car.getLuggageCapacity());
+        String sql = String.format("INSERT INTO `cars`(`Mark`, `Model`, `HP`, `Location`, `Luggage_capacity`, `Price`, `Seats`, `Fuel_consumption`)" +
+                        " VALUES ('%s','%s','%d','%s','%s','%d','%d','%d')",
+                car.getMark(), car.getModel(), car.getHp(), car.getLocation(), car.getLuggageCapacity(), car.getPrice(), car.getSeats(), car.getFuelConsumption());
         int id = executeCreate(sql);
         if (id > 0) {
             car.setId(id);
@@ -44,8 +45,9 @@ public class CarDAO extends AbstractDAO implements InterfaceDAO<Car> {
     @Override
     public boolean update(Car car) throws SQLException {
         String sql = String.format(
-                "UPDATE `cars` SET `Mark`='%s',`Model`='%s',`HP`='%d',`Location`='%s',`Luggage_capacity`='%d' WHERE ID=%d",
-                car.getMark(), car.getModel(), car.getHp(), car.getLocation(), car.getLuggageCapacity(), car.getId()
+                "UPDATE `cars` SET `Mark`='%s',`Model`='%s',`HP`='%d',`Location`='%s',`Luggage_capacity`='%d', " +
+                        "`Price`='%d',`Seats`='%d',`Fuel_consumption`='%d' WHERE ID=%d",
+                car.getMark(), car.getModel(), car.getHp(), car.getLocation(), car.getLuggageCapacity(), car.getPrice(), car.getSeats(), car.getFuelConsumption(), car.getId()
         );
         return executeUpdate(sql);
     }
@@ -62,7 +64,7 @@ public class CarDAO extends AbstractDAO implements InterfaceDAO<Car> {
         List<Car> carsList = new ArrayList<>();
         try (Connection connection = ConnectorCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format("SELECT `ID`, `Mark`, `Model`, `HP`, `Location`, `Luggage_capacity` FROM `cars` %s", whereString);
+            String sql = String.format("SELECT `ID`, `Mark`, `Model`, `HP`, `Location`, `Luggage_capacity`, `Price`, `Seats`, `Fuel_consumption` FROM `cars` %s", whereString);
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 carsList.add(new Car(
@@ -71,7 +73,10 @@ public class CarDAO extends AbstractDAO implements InterfaceDAO<Car> {
                                 rs.getString("Model"),
                                 rs.getInt("HP"),
                                 rs.getString("Location"),
-                                rs.getInt("Luggage_capacity")
+                                rs.getInt("Luggage_capacity"),
+                                rs.getInt("Price"),
+                                rs.getInt("Seats"),
+                                rs.getInt("Fuel_consumption")
                         )
                 );
             }
