@@ -12,7 +12,4 @@ public class CommandError extends Action {
         return null;
     }
 
-    public static void main(String[] args) {
-
-    }
 }
