@@ -1,3 +1,0 @@
-Main.welcome = Прыветанне
-Main.HowDoYouDo = Як твае справы
-Main.MyName = Твае имё

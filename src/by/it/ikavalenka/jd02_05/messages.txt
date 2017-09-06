@@ -1,3 +1,0 @@
-Main.welcome = Welcome
-Main.HowDoYouDo = How do you do
-Main.MyName = My Name

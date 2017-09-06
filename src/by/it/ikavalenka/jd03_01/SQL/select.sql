@@ -1,1 +1,0 @@
-select * from administrator INNER JOIN client ON administrator.FullOrder_id=client.order_ID;

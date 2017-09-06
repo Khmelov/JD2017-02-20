@@ -1,6 +1,0 @@
-﻿Main.welcome = Прывiтанне!
-Main.HowDoYouDo = Як твае справы?
-Main.MyName = Аляксей
-Main.CurrentDate = Сёння
-Main.ErrorLocale = Няправільная лакаль
-Main.EnterLocale = Увядзіце лакаль

@@ -1,3 +1,0 @@
-Main.greetings=Добры дзень Георгiй!
-Main.askForTime=Колькі часу?
-Main.askForName=Як цябе клічуць?

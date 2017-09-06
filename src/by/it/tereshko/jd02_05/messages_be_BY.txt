@@ -1,3 +1,0 @@
-Main.welcome=Прывiтанне!
-Main.HowDoYouDo=Як справы?
-Main.MyName=Андрэй

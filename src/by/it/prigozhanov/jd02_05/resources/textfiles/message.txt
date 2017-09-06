@@ -1,4 +1,0 @@
-greetings=Hello!
-today=Today is
-name=Vladimir
-enter=Enter a language(en(English), be(Belorussian), ru(Russian))

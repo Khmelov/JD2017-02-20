@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-xjc -d "/Users/georgijzyranov/Documents/Git Hub Homework /JD2017-02-20/src/by/it/Zyryanov/jd02_09/homework" -p bookpackage2 "/Users/georgijzyranov/Documents/Git Hub Homework /JD2017-02-20/src/by/it/Zyryanov/jd02_09/homework/BookShop.xsd"

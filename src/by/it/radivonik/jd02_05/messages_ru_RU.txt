@@ -1,3 +1,0 @@
-Main.Welcome=Привет!
-Main.HowDoYouDo=Как твои дела?
-Main.MyName=Александр

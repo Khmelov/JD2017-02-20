@@ -1,3 +1,0 @@
-Main.greetings=Guten Tag Georg!
-Main.askForTime=Wie spat ist es?
-Main.askForName=Wie heißt du?

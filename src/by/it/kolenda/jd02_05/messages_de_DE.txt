@@ -1,3 +1,0 @@
-Main.welcome=Guten tag!
-Main.HowDoYouDo=Alles kla?
-Main.MyName=Olegg

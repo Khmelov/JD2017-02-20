@@ -1,3 +1,0 @@
-Main.Welcome=Welcome!
-Main.HowDoYouDo=How do You do?
-Main.MyName=Alexandr

@@ -1,1 +1,0 @@
-"C:\Program Files\Java\jdk1.8.0_111\bin\xjc.exe" D:\students\psmish\JD2017-02-20\src\by\it\psmishenko\jd02_9\Reader.xsd -d D:\students\psmish\JD2017-02-20\src\
